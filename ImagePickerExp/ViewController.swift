@@ -47,10 +47,7 @@ UINavigationControllerDelegate, UITextFieldDelegate {
     }
     
     
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
-        unsubscribeFromKeyboardNotifications()
-    }
+    
     
     
     // Subscribe to Key Board Notifications
@@ -90,7 +87,7 @@ UINavigationControllerDelegate, UITextFieldDelegate {
         super.viewDidLoad()
         
         shareButton.enabled = false
-
+        
         self.topTextField.delegate = self.topTextFieldDelegate
         self.bottomTextField.delegate = self.bottomTextFieldDelegate
         
@@ -104,13 +101,13 @@ UINavigationControllerDelegate, UITextFieldDelegate {
         topTextField.defaultTextAttributes = memeTextAttributes
         bottomTextField.defaultTextAttributes = memeTextAttributes
         
-        //        imagePickerView.backgroundColor = UIColor.blackColor()
+        imagePickerView.backgroundColor = UIColor.blackColor()
         topTextField.text = "TOP"
         topTextField.textAlignment = .Center
         bottomTextField.text = "BOTTOM"
         bottomTextField.textAlignment = .Center
         
-
+        
     }
     
     
@@ -129,7 +126,7 @@ UINavigationControllerDelegate, UITextFieldDelegate {
         imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
         presentViewController(imagePicker, animated: true, completion: nil)
         shareButton.enabled = true
-
+        
     }
     
     
@@ -141,7 +138,7 @@ UINavigationControllerDelegate, UITextFieldDelegate {
         }
     }
     
-
+    
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         self.dismissViewControllerAnimated(true, completion: nil)
@@ -160,8 +157,60 @@ UINavigationControllerDelegate, UITextFieldDelegate {
     }
     
     
+    func configurePicker(type: UIImagePickerControllerSourceType) -> UIImagePickerController{
+        
+        let imagePicker = UIImagePickerController()
+        imagePicker.sourceType = type
+        imagePicker.delegate = self
+        
+        return imagePicker
+        
+    }
+    
+    func presentPickerController(picker: UIImagePickerController){
+        presentViewController(picker, animated: true, completion: nil)
+    }
+    
+    
+    func presentVC(controller: UIActivityViewController){
+        presentViewController(controller, animated: true, completion: nil)
+    }
+    
+    
+    
+    //    Initializing a Meme object
+    func saveMeme() -> Meme {
+        memeObject = Meme(textField1: topTextField.text!, textField2: bottomTextField.text!, image: imagePickerView.image!, memedImage: generateMemedImage())
+        
+        return memeObject!
+        
+        
+    }
+    
+    
     @IBAction func shareTheMeme(sender: AnyObject) {
         
+        // instantiate activity view controller
+        let activityViewController = UIActivityViewController.init(activityItems: [generateMemedImage()], applicationActivities: nil)
+        activityViewController.popoverPresentationController?.sourceView = sender as? UIView
+        
+        // present the view controller
+        presentVC(activityViewController)
+        
+        
+        // save it in the completionWithItemsHandler closure
+        activityViewController.completionWithItemsHandler = {
+            (activityType, completed:Bool, returnedItems:[AnyObject]?, error: NSError?) in
+            
+            // Return if cancelled
+            if (!completed) {
+                return
+            }
+            
+            //activity complete
+            self.saveMeme()
+            self.dismissViewControllerAnimated(true, completion: nil)
+        }
     }
     
     //    Combining image and text
@@ -189,23 +238,11 @@ UINavigationControllerDelegate, UITextFieldDelegate {
     
     
     
-    
-    
-    
-    //    Initializing a Meme object
-    func saveMeme() -> Meme {
-        memeObject = Meme(textField1: topTextField.text!, textField2: bottomTextField.text!, image: imagePickerView.image!, memedImage: generateMemedImage())
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
         
-        return memeObject!
-        
-        
-        
-        
+        unsubscribeFromKeyboardNotifications()
     }
-    
-    
-    
-    
     
     
     
