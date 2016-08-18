@@ -25,8 +25,6 @@ UINavigationControllerDelegate, UITextFieldDelegate {
     
     
     
-    
-    
     @IBOutlet weak var shareButton: UIBarButtonItem!
     @IBOutlet weak var imagePickerView: UIImageView!
     @IBOutlet weak var topTextField: UITextField!
@@ -48,29 +46,37 @@ UINavigationControllerDelegate, UITextFieldDelegate {
     
     
     
-    
-    
-    // Subscribe to Key Board Notifications
+    // Subscribe to Keyboard Notifications
     func subscribeToKeyboardNotifications() {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:"    , name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide:"    , name: UIKeyboardWillHideNotification, object: nil)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.keyboardWillShow(_:))    , name: UIKeyboardWillShowNotification, object: nil)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.keyboardWillHide(_:))    , name: UIKeyboardWillHideNotification, object: nil)
     }
     
-    // why do we need to unsubscribe from notifications???
+    
+    // Unsubscribing from notifications
     func unsubscribeFromKeyboardNotifications() {
+        
         NSNotificationCenter.defaultCenter().removeObserver(self, name:
             UIKeyboardWillShowNotification, object: nil)
+        
         NSNotificationCenter.defaultCenter().removeObserver(self, name:
             UIKeyboardWillHideNotification, object: nil)
     }
     
-    // lifting up UIView
+    // Lifting up UIView
     func keyboardWillShow(notification: NSNotification) {
-        view.frame.origin.y = 0
-        view.frame.origin.y -= getKeyboardHeight(notification)
+        
+        if bottomTextField.isFirstResponder() {
+            
+            view.frame.origin.y = 0 // do I need this line?
+            view.frame.origin.y -= getKeyboardHeight(notification)
+            
+        }
     }
     
-    // moving the UIView back
+    // Moving the UIView back
     func keyboardWillHide(notification: NSNotification) {
         view.frame.origin.y = 0
     }
@@ -101,12 +107,11 @@ UINavigationControllerDelegate, UITextFieldDelegate {
         topTextField.defaultTextAttributes = memeTextAttributes
         bottomTextField.defaultTextAttributes = memeTextAttributes
         
-        imagePickerView.backgroundColor = UIColor.blackColor()
+        // imagePickerView.backgroundColor = UIColor.blackColor()
         topTextField.text = "TOP"
         topTextField.textAlignment = .Center
         bottomTextField.text = "BOTTOM"
         bottomTextField.textAlignment = .Center
-        
         
     }
     
@@ -178,7 +183,7 @@ UINavigationControllerDelegate, UITextFieldDelegate {
     
     
     
-    //    Initializing a Meme object
+    // Initializing a Meme object
     func saveMeme() -> Meme {
         memeObject = Meme(textField1: topTextField.text!, textField2: bottomTextField.text!, image: imagePickerView.image!, memedImage: generateMemedImage())
         
@@ -190,19 +195,18 @@ UINavigationControllerDelegate, UITextFieldDelegate {
     
     @IBAction func shareTheMeme(sender: AnyObject) {
         
-        // instantiate activity view controller
+        // Instantiate activity view controller
         let activityViewController = UIActivityViewController.init(activityItems: [generateMemedImage()], applicationActivities: nil)
         activityViewController.popoverPresentationController?.sourceView = sender as? UIView
         
-        // present the view controller
+
         presentVC(activityViewController)
         
         
-        // save it in the completionWithItemsHandler closure
+        // Save it in the completionWithItemsHandler closure
         activityViewController.completionWithItemsHandler = {
             (activityType, completed:Bool, returnedItems:[AnyObject]?, error: NSError?) in
             
-            // Return if cancelled
             if (!completed) {
                 return
             }
