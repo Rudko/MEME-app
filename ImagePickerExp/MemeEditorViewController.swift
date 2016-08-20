@@ -90,10 +90,7 @@ UINavigationControllerDelegate, UITextFieldDelegate {
         
         shareButton.enabled = false
         
-        
-        
         func configureTextFields(textField: UITextField) {
-            
             
             let memeTextAttributes = [
                 NSForegroundColorAttributeName : UIColor.whiteColor(),
@@ -104,7 +101,7 @@ UINavigationControllerDelegate, UITextFieldDelegate {
             
             textField.defaultTextAttributes = memeTextAttributes
             textField.textAlignment = .Center
-
+            
             
         }
         
@@ -113,6 +110,7 @@ UINavigationControllerDelegate, UITextFieldDelegate {
         topTextField.text = "TOP"
         bottomTextField.text = "BOTTOM"
         
+        // I realized that I can merge these two delegates too. Is it a good idea?
         topTextField.delegate = topTextFieldDelegate
         bottomTextField.delegate = bottomTextFieldDelegate
         
@@ -131,17 +129,17 @@ UINavigationControllerDelegate, UITextFieldDelegate {
         return true
     }
     
-    
-    
-    @IBAction func pickAnImage(sender: AnyObject) {
+    func pickAnImageFromSource(source: UIImagePickerControllerSourceType) {
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
-        imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
         presentViewController(imagePicker, animated: true, completion: nil)
         shareButton.enabled = true
-        
     }
     
+    @IBAction func pickAnImage(sender: AnyObject) {
+        pickAnImageFromSource(.PhotoLibrary)
+        imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+    }
     
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String: AnyObject]) {
@@ -152,22 +150,18 @@ UINavigationControllerDelegate, UITextFieldDelegate {
     }
     
     
-    
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         self.dismissViewControllerAnimated(true, completion: nil)
         
     }
     
     
-    
     @IBAction func pickAnImageFromCamera(sender: AnyObject) {
-        let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
+        pickAnImageFromSource(.Camera)
         imagePicker.sourceType = UIImagePickerControllerSourceType.Camera
-        presentViewController(imagePicker, animated: true, completion: nil)
-        shareButton.enabled = true
         
     }
+ 
     
     
     func configurePicker(type: UIImagePickerControllerSourceType) -> UIImagePickerController{
