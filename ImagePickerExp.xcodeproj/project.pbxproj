@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		10600DCC1D4960DA00AF6BC7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10600DCB1D4960DA00AF6BC7 /* AppDelegate.swift */; };
-		10600DCE1D4960DA00AF6BC7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10600DCD1D4960DA00AF6BC7 /* ViewController.swift */; };
+		10600DCE1D4960DA00AF6BC7 /* MemeEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10600DCD1D4960DA00AF6BC7 /* MemeEditorViewController.swift */; };
 		10600DD11D4960DA00AF6BC7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10600DCF1D4960DA00AF6BC7 /* Main.storyboard */; };
 		10600DD31D4960DA00AF6BC7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 10600DD21D4960DA00AF6BC7 /* Assets.xcassets */; };
 		10600DD61D4960DA00AF6BC7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10600DD41D4960DA00AF6BC7 /* LaunchScreen.storyboard */; };
@@ -16,6 +16,7 @@
 		10600DEC1D4960DB00AF6BC7 /* ImagePickerExpUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10600DEB1D4960DB00AF6BC7 /* ImagePickerExpUITests.swift */; };
 		10600DFA1D51500B00AF6BC7 /* TopTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10600DF91D51500B00AF6BC7 /* TopTextFieldDelegate.swift */; };
 		10600DFC1D51504500AF6BC7 /* BottomTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10600DFB1D51504500AF6BC7 /* BottomTextFieldDelegate.swift */; };
+		10F9E7FB1D66AA7A00654424 /* StructMeme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F9E7FA1D66AA7A00654424 /* StructMeme.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,7 +39,7 @@
 /* Begin PBXFileReference section */
 		10600DC81D4960DA00AF6BC7 /* ImagePickerExp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImagePickerExp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		10600DCB1D4960DA00AF6BC7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		10600DCD1D4960DA00AF6BC7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		10600DCD1D4960DA00AF6BC7 /* MemeEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemeEditorViewController.swift; sourceTree = "<group>"; };
 		10600DD01D4960DA00AF6BC7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		10600DD21D4960DA00AF6BC7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		10600DD51D4960DA00AF6BC7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -51,6 +52,7 @@
 		10600DED1D4960DB00AF6BC7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		10600DF91D51500B00AF6BC7 /* TopTextFieldDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopTextFieldDelegate.swift; sourceTree = "<group>"; };
 		10600DFB1D51504500AF6BC7 /* BottomTextFieldDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomTextFieldDelegate.swift; sourceTree = "<group>"; };
+		10F9E7FA1D66AA7A00654424 /* StructMeme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StructMeme.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,7 +104,8 @@
 			isa = PBXGroup;
 			children = (
 				10600DCB1D4960DA00AF6BC7 /* AppDelegate.swift */,
-				10600DCD1D4960DA00AF6BC7 /* ViewController.swift */,
+				10600DCD1D4960DA00AF6BC7 /* MemeEditorViewController.swift */,
+				10F9E7FA1D66AA7A00654424 /* StructMeme.swift */,
 				10600DF91D51500B00AF6BC7 /* TopTextFieldDelegate.swift */,
 				10600DFB1D51504500AF6BC7 /* BottomTextFieldDelegate.swift */,
 				10600DCF1D4960DA00AF6BC7 /* Main.storyboard */,
@@ -265,7 +268,8 @@
 			files = (
 				10600DFA1D51500B00AF6BC7 /* TopTextFieldDelegate.swift in Sources */,
 				10600DFC1D51504500AF6BC7 /* BottomTextFieldDelegate.swift in Sources */,
-				10600DCE1D4960DA00AF6BC7 /* ViewController.swift in Sources */,
+				10600DCE1D4960DA00AF6BC7 /* MemeEditorViewController.swift in Sources */,
+				10F9E7FB1D66AA7A00654424 /* StructMeme.swift in Sources */,
 				10600DCC1D4960DA00AF6BC7 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -497,6 +501,7 @@
 				10600DF21D4960DB00AF6BC7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		10600DF31D4960DB00AF6BC7 /* Build configuration list for PBXNativeTarget "ImagePickerExpTests" */ = {
 			isa = XCConfigurationList;
@@ -505,6 +510,7 @@
 				10600DF51D4960DB00AF6BC7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		10600DF61D4960DB00AF6BC7 /* Build configuration list for PBXNativeTarget "ImagePickerExpUITests" */ = {
 			isa = XCConfigurationList;
@@ -513,6 +519,7 @@
 				10600DF81D4960DB00AF6BC7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

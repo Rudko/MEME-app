@@ -24,7 +24,6 @@ class TopTextFieldDelegate: NSObject, UITextFieldDelegate {
     }
     
     func textFieldDidBeginEditing(textField: UITextField) {
-        
         if textField.text == "TOP" {
         textField.text = ""
         }

@@ -18,7 +18,6 @@ class BottomTextFieldDelegate: NSObject, UITextFieldDelegate {
 
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
-//        view.frame.origin.y = 0
         
         return true
     }

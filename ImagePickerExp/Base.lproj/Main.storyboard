@@ -6,10 +6,10 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--MemeEditorViewController-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="ImagePickerExp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" userLabel="MemeEditorViewController" customClass="MemeEditorViewController" customModule="ImagePickerExp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -39,17 +39,17 @@
                                 </items>
                             </navigationBar>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" usesAttributedText="YES" allowsEditingTextAttributes="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jhP-Tt-hPS">
-                                <rect key="frame" x="16" y="100" width="343" height="50"/>
+                                <rect key="frame" x="16" y="89" width="343" height="40"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="bc5-5S-gTA"/>
+                                    <constraint firstAttribute="height" constant="40" id="bc5-5S-gTA"/>
                                 </constraints>
                                 <attributedString key="attributedText"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" usesAttributedText="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vT7-2x-MY4">
-                                <rect key="frame" x="16" y="493" width="343" height="50"/>
+                                <rect key="frame" x="16" y="558" width="343" height="40"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="LhT-TM-sVn"/>
+                                    <constraint firstAttribute="height" constant="40" id="LhT-TM-sVn"/>
                                 </constraints>
                                 <attributedString key="attributedText"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
@@ -86,9 +86,9 @@
                             <constraint firstAttribute="trailingMargin" secondItem="oKo-Rh-JV9" secondAttribute="trailing" constant="-20" id="ZOO-Cf-7Vo"/>
                             <constraint firstItem="vT7-2x-MY4" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="d6e-68-DaV"/>
                             <constraint firstItem="vT7-2x-MY4" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="fZQ-JR-WHX"/>
-                            <constraint firstItem="Exr-vK-iRM" firstAttribute="top" secondItem="jhP-Tt-hPS" secondAttribute="bottom" constant="-86" id="fnw-2C-Mmj"/>
+                            <constraint firstItem="Exr-vK-iRM" firstAttribute="top" secondItem="jhP-Tt-hPS" secondAttribute="bottom" constant="-65" id="fnw-2C-Mmj"/>
                             <constraint firstItem="oKo-Rh-JV9" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" constant="20" id="gR5-kF-N4t"/>
-                            <constraint firstItem="X0E-L2-r3v" firstAttribute="top" secondItem="vT7-2x-MY4" secondAttribute="bottom" constant="80" id="hmp-zX-UOm"/>
+                            <constraint firstItem="X0E-L2-r3v" firstAttribute="top" secondItem="vT7-2x-MY4" secondAttribute="bottom" constant="25" id="hmp-zX-UOm"/>
                             <constraint firstItem="jhP-Tt-hPS" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="rmx-1A-zed"/>
                             <constraint firstItem="Exr-vK-iRM" firstAttribute="top" secondItem="oKo-Rh-JV9" secondAttribute="bottom" id="tFF-Ux-TOd"/>
                             <constraint firstItem="oKo-Rh-JV9" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="vEA-oS-ftW"/>
