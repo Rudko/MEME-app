@@ -25,11 +25,16 @@ UINavigationControllerDelegate, UITextFieldDelegate {
     @IBOutlet weak var bottomTextField: UITextField!
     @IBOutlet weak var libraryButton: UIBarButtonItem!
     @IBOutlet weak var cameraButton: UIBarButtonItem!
+    @IBOutlet weak var navigationBar: UINavigationBar!
+    @IBOutlet weak var toolBar: UIToolbar!
     
     
     
     let topTextFieldDelegate = TopTextFieldDelegate()
     let bottomTextFieldDelegate = BottomTextFieldDelegate()
+    
+    let imagePicker = UIImagePickerController()
+    
     
     
     override func viewWillAppear(animated: Bool) {
@@ -69,12 +74,15 @@ UINavigationControllerDelegate, UITextFieldDelegate {
         }
     }
     
+    
+    
     // Moving the UIView back
     func keyboardWillHide(notification: NSNotification) {
         view.frame.origin.y = 0
     }
     
     
+    // Getting keyboard height
     func getKeyboardHeight(notification: NSNotification) -> CGFloat {
         let userInfo = notification.userInfo
         let keyboardSize = userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue // of CGRect
@@ -88,8 +96,11 @@ UINavigationControllerDelegate, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         shareButton.enabled = false
         
+        
+        //        Textfields attributes
         func configureTextFields(textField: UITextField) {
             
             let memeTextAttributes = [
@@ -101,25 +112,19 @@ UINavigationControllerDelegate, UITextFieldDelegate {
             
             textField.defaultTextAttributes = memeTextAttributes
             textField.textAlignment = .Center
-            
-            
         }
+        
         
         configureTextFields(topTextField)
         configureTextFields(bottomTextField)
         topTextField.text = "TOP"
         bottomTextField.text = "BOTTOM"
         
-        // I realized that I can merge these two delegates too. Is it a good idea?
+        // Note to a reviewer: I realized that I can merge these two delegates too. Is it a good idea?
         topTextField.delegate = topTextFieldDelegate
         bottomTextField.delegate = bottomTextFieldDelegate
         
-        
     }
-    
-    
-    
-    
     
     
     
@@ -129,8 +134,9 @@ UINavigationControllerDelegate, UITextFieldDelegate {
         return true
     }
     
+    
+    //    Getting an image
     func pickAnImageFromSource(source: UIImagePickerControllerSourceType) {
-        let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         presentViewController(imagePicker, animated: true, completion: nil)
         shareButton.enabled = true
@@ -161,7 +167,7 @@ UINavigationControllerDelegate, UITextFieldDelegate {
         imagePicker.sourceType = UIImagePickerControllerSourceType.Camera
         
     }
- 
+    
     
     
     func configurePicker(type: UIImagePickerControllerSourceType) -> UIImagePickerController{
@@ -209,22 +215,23 @@ UINavigationControllerDelegate, UITextFieldDelegate {
         activityViewController.completionWithItemsHandler = {
             (activityType, completed:Bool, returnedItems:[AnyObject]?, error: NSError?) in
             
-            if (!completed) {
-                return
+            if completed {
+                self.saveMeme()
+                self.dismissViewControllerAnimated(true, completion: nil)
+                
             }
-            
-            //activity complete
-            self.saveMeme()
-            self.dismissViewControllerAnimated(true, completion: nil)
         }
     }
+    
+    
+    
     
     //    Combining image and text
     func generateMemedImage() -> UIImage {
         
         // Hide toolbar and navbar
-        navigationController?.navigationBarHidden = true
-        navigationController?.setToolbarHidden(true, animated: false)
+        navigationBar.hidden = true
+        toolBar.hidden = true
         
         // Render view to an image
         UIGraphicsBeginImageContext(self.view.frame.size)
@@ -235,8 +242,8 @@ UINavigationControllerDelegate, UITextFieldDelegate {
         UIGraphicsEndImageContext()
         
         // Show toolbar and navbar, again
-        navigationController?.navigationBarHidden = false
-        navigationController?.setToolbarHidden(false, animated: false)
+        navigationBar.hidden = false
+        toolBar.hidden = false
         
         return memedImage
         
